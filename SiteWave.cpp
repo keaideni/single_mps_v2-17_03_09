@@ -169,6 +169,8 @@ void SiteWave::save()
 
         outfile<<_site<<endl;
 
+        outfile<<_cell.size()<<endl;
+
         outfile.precision(13);
 
         for(auto it=_cell.begin(); it!=_cell.end(); ++it)
@@ -189,6 +191,58 @@ void SiteWave::save()
                 }
         }
 
+
+
+}
+
+
+
+void SiteWave::read(const int& site)
+{
+
+        _cell.clear();
+
+        _site=site;
+
+        string filename("./data/SiteWave/");
+
+        stringstream sstr;
+
+        sstr<<_site;
+
+        string tem;sstr>>tem;
+
+        filename+=tem;
+
+        ifstream infile(filename);
+
+        int numquan;
+
+        infile>>numquan;
+
+        int size;
+
+        infile>>size;
+
+        int D;
+
+        for(int i=0; i<size; ++i)
+        {
+                infile>>numquan;
+                infile>>D;
+
+                MatrixXd tem(D, D);
+
+                for(int j=0; j<D; ++j)
+                {
+                        for(int k=0; k<D; ++k)
+                        {
+                                infile>>tem(j,k);
+                        }
+                }
+
+                _cell.insert(pair<int, MatrixXd>(numquan, tem));
+        }
 
 
 }
