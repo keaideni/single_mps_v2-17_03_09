@@ -3,6 +3,7 @@
 
 #include "Parameter.h"
 #include <unordered_map>
+#include <Eigen/Dense>
 
 
 
@@ -30,8 +31,8 @@ public:
         ~OP();
 
         
-        const std::unordered_map<int, int>* RLQ()const{return &_RLQ;};
-        const std::unordered_map<int, double>* QMat()const{return &_QMat;};
+        const std::unordered_map<int, int>& RLQ()const{return _RLQ;};
+        const std::unordered_map<int, double>& QMat()const{return _QMat;};
         
 
 //=======initialize the boson operator=========================

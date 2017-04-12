@@ -3,6 +3,7 @@
 mkdir Corr
 mkdir data
 mkdir result
+mkdir data/SiteWave
 
 cat > data/QNosave <<EOF
 LatticeSize= 20

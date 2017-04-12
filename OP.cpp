@@ -32,7 +32,7 @@ OP::~OP()
 OP::OP(const Spin& type)
 {
 
-
+        
 
         
 
