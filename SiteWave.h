@@ -13,6 +13,11 @@
 using namespace Eigen;
 using namespace std;
 
+enum edge
+{
+        leftedge, rightedge
+};
+
 class SiteWave
 {
 private:
@@ -26,6 +31,7 @@ public:
         const int& site() const{return _site;};
 
         SiteWave(const int& D, const int& site, const OP& Eye);
+        SiteWave(const int& D, const int& site, const OP& Eye, const edge& edgestate);
 
 
         void Wave2f(vector<double>& f);
