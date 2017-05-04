@@ -30,8 +30,10 @@ public:
         const map<int, MatrixXd>& cell() const{return _cell;};
         const int& site() const{return _site;};
 
-        SiteWave(const int& D, const int& site, const OP& Eye);
-        SiteWave(const int& D, const int& site, const OP& Eye, const edge& edgestate);
+        SiteWave(const int& D, const int& site, const OP& Eye);//right canonical initialization. 
+        //For the right edge point.
+        SiteWave(const int& D, const int& site, const OP& Eye, const SiteWave& Rsite);
+        //right canonical initialization.
 
 
         void Wave2f(vector<double>& f);

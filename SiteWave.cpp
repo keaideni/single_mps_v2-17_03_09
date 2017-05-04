@@ -10,7 +10,9 @@ _site(site)
 
         int Sdim(Eye.RLQ().size());
 
-        MatrixXd tem(MatrixXd::Random(D, Sdim*D));
+        int DL=D<Sdim?D:Sdim;
+
+        MatrixXd tem(MatrixXd::Random(DL, Sdim));
 
         BDCSVD<MatrixXd> svd(tem, ComputeFullV);
 
@@ -22,7 +24,7 @@ _site(site)
         int i(0);
         for(auto it=Eye.QMat().begin(); it!=Eye.QMat().end(); ++it)
         {
-                _cell.insert(pair<int, MatrixXd>(it->first, svd.matrixV().transpose().block(0, i*D, D, D)));
+                _cell.insert(pair<int, MatrixXd>(it->first, svd.matrixV().transpose().block(0, i, DL, 1)));
                 ++i;
         }
 
@@ -32,29 +34,27 @@ _site(site)
 
 
 
-SiteWave::SiteWave(const int& D, const int& site, const OP& Eye, const edge& edgestate):
-_site(site)
+SiteWave::SiteWave(const int& D, const int& site, const OP& Eye, const SiteWave& Rsite)
 {
         int Sdim(Eye.RLQ().size());
+        int DR(Rsite._cell.begin()->second.rows());
+        int DL(D<DR*Sdim?D:DR*Sdim);
 
-        switch(edgestate)
-        
-                case(leftedge):
-                {
-                        MatrixXd tem(MatrixXd::Random(Sdim, D));
+        MatrixXd tem(MatrixXd::Random(DL, Sdim*DR));
 
-                        BDCSVD<MatrixXd> svd(tem, ComputeFullU);
+        BDCSVD<MatrixXd> svd(tem, ComputeFullV);
 
-                        int i(0);
-                        for(auto it=Eye.QMat().begin(); it!=Eye.QMat().end(); ++it)
-                        {
-                                _cell.insert(pair<int, MatrixXd>
-                                        (it->first, svd.matrixU().block(i, 0, 1, D)));
-                                ++i;
-                        }
+        //cout<<svd.matrixV().transpose()*svd.matrixV()<<endl;
+        //cout<<"============================================"<<endl;
+        //cout<<svd.matrixV()<<endl;
+        //cout<<"============================================"<<endl;
 
-                }
-        
+        int i(0);
+        for(auto it=Eye.QMat().begin(); it!=Eye.QMat().end(); ++it)
+        {
+                _cell.insert(pair<int, MatrixXd>(it->first, svd.matrixV().transpose().block(0, i*DR, DL, DR)));
+                ++i;
+        }
 }
 
 

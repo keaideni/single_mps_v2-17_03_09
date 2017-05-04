@@ -13,9 +13,15 @@ int main()
         //a.show();
         SiteWave haha(3, 0, a);
 
-        //haha.show();
+        haha.show();
 
-        VectorXd f(VectorXd::Random(36));
+        SiteWave hehe(1,1,a,haha);
+
+        cout<<"=======The beautiful parting line=========="<<endl;
+
+        hehe.show();
+
+        /*VectorXd f(VectorXd::Random(36));
 
         std::vector<double> v;
         for(int i=0; i<f.rows(); )v.push_back(f(i++));
@@ -33,12 +39,18 @@ int main()
 
         SiteWave heha;
         heha.read(0);
-        heha.show();
-        MatrixXd aaa(MatrixXd::Zero(3,3));
-        for(auto it=heha.cell().begin(); it!=heha.cell().end(); ++it)
+        heha.show();*/
+
+
+
+        MatrixXd aaa(MatrixXd::Zero(1,1));
+        for(auto it=hehe.cell().begin(); it!=hehe.cell().end(); ++it)
         {
-                aaa=aaa+it->second.transpose()*it->second;
+                aaa=aaa+it->second*it->second.transpose();
         }
+
+
+        cout<<"=======The beautiful parting line=========="<<endl;
 
         cout<<aaa<<endl;
 
