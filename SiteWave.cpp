@@ -3,12 +3,12 @@
 #include <sstream>
 #include <fstream>
 
-SiteWave::SiteWave(const int& D, const int& site, const OP& Eye):
+SiteWave::SiteWave(const int& D, const int& site, const OP& eye):
 _site(site)
 {
         //MatrixXd tem(MatrixXd::zero(D, D));
 
-        int Sdim(Eye.RLQ().size());
+        int Sdim(eye.RLQ().size());
 
         int DL=D<Sdim?D:Sdim;
 
@@ -22,7 +22,7 @@ _site(site)
         //cout<<"============================================"<<endl;
 
         int i(0);
-        for(auto it=Eye.QMat().begin(); it!=Eye.QMat().end(); ++it)
+        for(auto it=eye.QMat().begin(); it!=eye.QMat().end(); ++it)
         {
                 _cell.insert(pair<int, MatrixXd>(it->first, svd.matrixV().transpose().block(0, i, DL, 1)));
                 ++i;
@@ -34,11 +34,14 @@ _site(site)
 
 
 
-SiteWave::SiteWave(const int& D, const int& site, const OP& Eye, const SiteWave& Rsite)
+SiteWave::SiteWave(const int& D, const int& site, const OP& eye, const SiteWave& Rsite):
+_site(site)
 {
-        int Sdim(Eye.RLQ().size());
+        int Sdim(eye.RLQ().size());
         int DR(Rsite._cell.begin()->second.rows());
         int DL(D<DR*Sdim?D:DR*Sdim);
+
+        if(site==1)DL=1;
 
         MatrixXd tem(MatrixXd::Random(DL, Sdim*DR));
 
@@ -50,12 +53,17 @@ SiteWave::SiteWave(const int& D, const int& site, const OP& Eye, const SiteWave&
         //cout<<"============================================"<<endl;
 
         int i(0);
-        for(auto it=Eye.QMat().begin(); it!=Eye.QMat().end(); ++it)
+        for(auto it=eye.QMat().begin(); it!=eye.QMat().end(); ++it)
         {
                 _cell.insert(pair<int, MatrixXd>(it->first, svd.matrixV().transpose().block(0, i*DR, DL, DR)));
                 ++i;
         }
 }
+
+
+
+
+
 
 
 
@@ -236,6 +244,8 @@ void SiteWave::save()
                 }
         }
 
+        outfile.close();
+
 
 
 }
@@ -289,6 +299,8 @@ void SiteWave::read(const int& site)
 
                 _cell.insert(pair<int, MatrixXd>(numquan, tem));
         }
+
+        infile.close();
 
 
 }

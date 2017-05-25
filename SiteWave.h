@@ -13,10 +13,7 @@
 using namespace Eigen;
 using namespace std;
 
-enum edge
-{
-        leftedge, rightedge
-};
+
 
 class SiteWave
 {
@@ -36,6 +33,15 @@ public:
         //right canonical initialization.
 
 
+        const SiteWave& operator=(const SiteWave&wave)
+        {
+            _cell.clear();
+            _site=wave._site;
+            _cell=wave._cell;
+        }
+
+
+
         void Wave2f(vector<double>& f);
         void f2Wave(const std::vector<double>& f);
 
@@ -50,16 +56,22 @@ public:
 
         void show()const
         {
+                cout<<"=====the beautiful beginning line of SiteWave======="<<endl;
                 cout<<"the site is "<<_site<<endl;
                 cout<<"The matrix is"<<endl;
 
                 
                 for(auto it=_cell.begin(); it!=_cell.end(); ++it)
                 {
-                        cout<<it->first<<"=>"<<endl;
-                        cout<<it->second<<endl;
+                        cout<<it->first<<"=>"<<it->second.rows()<<"X"<<it->second.cols()<<endl;
                 }
+
+                cout<<"===========the beautiful ending line=================="<<endl;
         }
+
+        void clear(){_cell.clear();};
+
+        friend class Superlattice;
 
         
 };

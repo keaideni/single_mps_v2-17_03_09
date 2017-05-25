@@ -17,7 +17,8 @@ Parameter::Parameter(std::ifstream& infile)
                 >> str >> _EdgeCondition
                 >> str >> Energy
                 >> str >> _u
-                >> str >> _t;
+                >> str >> _t
+                >> str >> _epsilon;
 }
 
 Parameter::Parameter(const Parameter& para):
@@ -31,7 +32,8 @@ _D(para._D),
 _SweepNo(para._SweepNo),
 _EdgeCondition(para._EdgeCondition),
 _u(para._u),
-_t(para._t)
+_t(para._t),
+_epsilon(para._epsilon)
 {
 
 }
@@ -48,6 +50,7 @@ void Parameter::show()const
                 << "SweepNo= " << _SweepNo << std::endl
                 << "EdgeCondition= " << _EdgeCondition << std::endl
                 << "u= "<<_u<<std::endl
-                << "t= "<<_t<<std::endl;
+                << "t= "<<_t<<std::endl
+                << "epsilon= "<<_epsilon<<std::endl;
 }
 

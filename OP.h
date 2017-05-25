@@ -9,8 +9,8 @@
 
 
 
-enum OP_modes{Eye, Creation, Annihilation};
-enum Spin{SpinEye, SpinCreation, SpinAnnihilation, SpinZ};//1/2 spin.
+enum OP_modes{Eye, Creation, Annihilation, Onsite, SpinEye, SpinCreation, SpinAnnihilation, SpinZ};//1/2 spin.
+//onsite term is particular for Bose-Hubbard term.
 
 using namespace Eigen;
 
@@ -36,7 +36,7 @@ public:
         
 
 //=======initialize the boson operator=========================
-        OP(const Spin& type);
+        OP(const OP_modes& type);
 
         OP(const Parameter& para, const OP_modes& type);
 

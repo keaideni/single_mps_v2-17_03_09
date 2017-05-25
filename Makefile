@@ -21,10 +21,10 @@ LIBSPECTRA = -I/media/xuejian/WORK/spectra/spectra-0.2.0/spectra-0.2.0/include/ 
 
 
 
-obj=main.o Parameter.o OP.o SiteWave.o #Sub.o #QWave.o Super.o DMRGP.o Corr.o
+obj=main.o Parameter.o OP.o SiteWave.o Sub.o SubLattice.o#QWave.o Super.o DMRGP.o Corr.o
 main:$(obj)
 	$(CCCOM) -o main $(obj)  $(LIBSPECTRA)
-main.o:main.cpp 
+main.o:main.cpp test_Sub.h test_SiteWave.h test_sublattice.h
 	$(CCCOM) -c main.cpp $(LIBSPECTRA)
 Parameter.o:Parameter.h Parameter.cpp
 	$(CCCOM) -c Parameter.cpp -O2 $(LIBSPECTRA)
@@ -32,6 +32,10 @@ OP.o:OP.cpp OP.h
 	$(CCCOM) -c OP.cpp -O2 $(LIBSPECTRA)
 SiteWave.o:SiteWave.h SiteWave.cpp
 	$(CCCOM) -c SiteWave.cpp -O2 $(LIBSPECTRA)
+Sub.o:Sub.h Sub.cpp
+	$(CCCOM) -c Sub.cpp -O2 $(LIBSPECTRA)
+SubLattice.o:SubLattice.h SubLattice.cpp
+	$(CCCOM) -c SubLattice.cpp -O2 $(LIBSPECTRA)
 .PHONY:clean
 clean:
 	rm -f main $(obj)

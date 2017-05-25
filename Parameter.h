@@ -19,7 +19,7 @@ private:
         int _SweepNo;
         int _EdgeCondition; //0 for open.
 
-        double _u,_t;
+        double _u,_t, _epsilon;
 
     
 
@@ -42,6 +42,7 @@ public:
         int EdgeCondition()const {return _EdgeCondition;};
         double u()const {return _u;};
         double t()const {return _t;};
+        double epsilon()const{return _epsilon;};
        
         
 };

@@ -29,7 +29,7 @@ OP::~OP()
         //std::cout<<"the "<<++Class_Num<<"th class destruction!"<<std::endl;
 }
 
-OP::OP(const Spin& type)
+OP::OP(const OP_modes& type)
 {
 
         
@@ -140,6 +140,72 @@ OP::OP(const Parameter& para, const OP_modes& type)
                         }
                         break;
                 }
+                case Onsite:
+                {
+                        for(int i=min; i<=max; ++i)
+                        {
+                                _RLQ.insert(std::pair<int, int>(i, i));
+
+
+                                double temp((i*i-i)/2*para.u()+para.epsilon()*i);
+                                _QMat.insert(std::pair<int, double>(i, temp));
+                        }
+                }
+        }
+
+
+
+        switch (type)
+        {
+
+                case SpinZ:
+                {
+                      _RLQ.insert(std::pair<int, int>(0, 0));
+                      _RLQ.insert(std::pair<int, int>(1, 1));
+
+                      
+
+                      _QMat.insert(std::pair<int, double>(0, -1));
+
+
+                      
+                      _QMat.insert(std::pair<int, double>(1, 1));
+
+
+                      break;
+                }
+                case SpinCreation:
+                {
+                      _RLQ.insert(std::pair<int, int>(0, 1));
+
+                      
+
+                      _QMat.insert(std::pair<int, double>(0, 1));
+
+                      break;
+                }
+                case SpinAnnihilation:
+                {
+                      _RLQ.insert(std::pair<int, int>(1, 0));
+
+                      
+
+                      _QMat.insert(std::pair<int, double>(1, 1));
+
+
+                      break;
+                }
+                case SpinEye:
+                {
+                      _RLQ.insert(std::pair<int, int>(0, 0));
+                      _RLQ.insert(std::pair<int, int>(1, 1));
+
+                      
+
+                      _QMat.insert(std::pair<int, double>(0, 1));
+                      _QMat.insert(std::pair<int, double>(1, 1));
+                      break;
+                }
         }
         
 }
@@ -172,6 +238,7 @@ void OP::show()const
         }*/
         //std::cout<< "the site: " << std::endl;
         //std::cout<<_site<<std::endl;
+        std::cout<<"=====the beautiful beginning line of OP========="<<std::endl;
         std::cout << "the RLQ: " << std::endl;
         for (auto it = _RLQ.begin(); it != _RLQ.end(); it++)
         {
@@ -182,4 +249,6 @@ void OP::show()const
         {
                 std::cout << it->first << " => " << it->second<<std::endl;//.rows()<<"x"<<it->second.cols() << std::endl;
         }
+
+        std::cout<<"==========the beautiful ending line============"<<std::endl;
 }
