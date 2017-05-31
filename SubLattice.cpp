@@ -55,6 +55,8 @@ void SubLattice::save()const
         _SysEye.save(outfile);
         _SysCreation.save(outfile);
         _SysAnnihilation.save(outfile);
+
+        outfile.close();
 }
 
 
@@ -90,4 +92,6 @@ void SubLattice::read(const int& site)
         _SysEye.read(infile);
         _SysCreation.read(infile);
         _SysAnnihilation.read(infile);
+
+        infile.close();
 }

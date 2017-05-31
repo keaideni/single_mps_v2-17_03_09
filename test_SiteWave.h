@@ -76,7 +76,7 @@ void Ini(const Parameter& para)
 
                 SiteWave wave2(para.D(), i, a, wave1);
 
-                SubLattice lattice2(para, wave2, lattice1, Right);
+                SubLattice lattice2(para, wave2, lattice1, i);
                 lattice2.save();
 
                 //cout<<wave2.site()<<endl;
@@ -85,7 +85,7 @@ void Ini(const Parameter& para)
                 wave1=wave2;
                 lattice1=lattice2;
         }
-        wave1.show();
+        /*wave1.show();
         lattice1.read(1);
-        lattice1.show();
+        lattice1.show();*/
 }

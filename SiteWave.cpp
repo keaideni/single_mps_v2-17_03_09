@@ -205,6 +205,48 @@ void SiteWave::SVD(const std::vector<double>& f, SiteWave& RWave)
 
 
 
+
+
+
+const SiteWave& SiteWave::add(const SiteWave& wave)
+{
+        for(auto it=wave._cell.begin(); it!=wave._cell.end(); ++it)
+        {
+                auto itt=_cell.find(it->first);
+                if(itt!=_cell.end())
+                {
+                        itt->second+=it->second;
+                }else
+                {
+                        _cell.insert(pair<int, MatrixXd>(it->first, it->second));
+                }
+        }
+}
+
+
+
+
+const SiteWave& SiteWave::operator+=(const SiteWave& wave)
+{
+        for(auto it=wave._cell.begin(); it!=wave._cell.end(); ++it)
+        {
+                auto itt=_cell.find(it->first);
+                if(itt!=_cell.end())
+                {
+                        itt->second+=it->second;
+                }else
+                {
+                        _cell.insert(pair<int, MatrixXd>(it->first, it->second));
+                }
+        }
+}
+
+
+
+
+
+
+
 void SiteWave::save()
 {
         string filename("./data/SiteWave/");

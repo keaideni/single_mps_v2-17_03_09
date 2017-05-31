@@ -50,8 +50,14 @@ public:
         void SVD(const std::vector<double>& f, SiteWave&RWave);
 
 
+        const SiteWave& add(const SiteWave& wave);
+        const SiteWave& operator+=(const SiteWave& wave);
+
+
+
         void save();
         void read(const int& site);
+
 
 
         void show()const
@@ -71,7 +77,7 @@ public:
 
         void clear(){_cell.clear();};
 
-        friend class Superlattice;
+        friend class SuperLattice;
 
         
 };

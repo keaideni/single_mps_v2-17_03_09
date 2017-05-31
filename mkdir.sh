@@ -7,7 +7,7 @@ mkdir data/SiteWave
 mkdir data/SubLattice
 
 cat > data/QNosave <<EOF
-LatticeSize= 20
+LatticeSize= 10
 ParticleNo= 10
 SiteNo= 1
 DeltaQL= 1
