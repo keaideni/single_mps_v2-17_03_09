@@ -14,7 +14,7 @@ int main()
         //para.show();
         Sub::QMax=para.ParticleNo();
         //test_Sub(para);
-        //Ini(para);
+        Ini(para);
         //para.show();
         //test_sublattice(para);
 

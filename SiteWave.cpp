@@ -242,6 +242,21 @@ const SiteWave& SiteWave::operator+=(const SiteWave& wave)
 }
 
 
+const SiteWave& SiteWave::time(const double& t)
+{
+        for(auto it=_cell.begin(); it!=_cell.end(); ++it)
+        {
+                it->second*=t;
+        }
+}
+
+const SiteWave& SiteWave::operator*=(const double& t)
+{
+        for(auto it=_cell.begin(); it!=_cell.end(); ++it)
+        {
+                it->second*=t;
+        }
+}
 
 
 

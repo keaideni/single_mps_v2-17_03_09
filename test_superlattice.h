@@ -6,9 +6,9 @@
 void test_superlattice(const Parameter& para);
 void test_superlattice(const Parameter& para)
 {
-        SubLattice Rsub;
+        SubLattice Rlattice;
 
-        Rsub.read(2);
+        Rlattice.read(2);
 
         SiteWave wave1;
 
@@ -17,7 +17,7 @@ void test_superlattice(const Parameter& para)
         SiteWave wave2(wave1);
 
         wave2.show();
-        SuperLattice super;
-        super.calcuWave(wave2, wave1, Rsub.SysCreation(), Annihilation, para);
+        SuperLattice super(Rlattice, wave2, wave1, para);
+        //super.calcuWave(wave2, wave1, Rsub.SysCreation(), Annihilation, para);
         wave2.show();
 }

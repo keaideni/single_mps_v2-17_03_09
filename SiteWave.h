@@ -52,6 +52,8 @@ public:
 
         const SiteWave& add(const SiteWave& wave);
         const SiteWave& operator+=(const SiteWave& wave);
+        const SiteWave& time(const double& t);
+        const SiteWave& operator*=(const double& t);
 
 
 
