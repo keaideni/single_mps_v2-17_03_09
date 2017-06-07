@@ -2,6 +2,7 @@
 #include "test_Sub.h"
 #include "test_sublattice.h"
 #include "test_superlattice.h"
+#include "Iterator.h"
 
 int Sub::QMax;
 
@@ -18,6 +19,7 @@ int main()
         //para.show();
         //test_sublattice(para);
 
-        test_superlattice(para);
+        //test_superlattice(para);
+        Iterator(para);
 
 }

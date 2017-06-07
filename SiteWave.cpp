@@ -67,8 +67,9 @@ _site(site)
 
 
 
-void SiteWave::Wave2f(vector<double>& f)
+void SiteWave::Wave2f(vector<double>& f)const
 {
+        f.clear();
         for(auto it=_cell.begin(); it!=_cell.end(); ++it)
         {
                 //int D(it->second.rows());//cout<<D<<endl;
@@ -132,18 +133,24 @@ void SiteWave::SVD(SiteWave& LWave, const std::vector<double>& f)
                 
         }
 
+        MatrixXd temp1=svd.singularValues().asDiagonal();
+        if(DL>num*DR)
+        {
+                MatrixXd temp2=MatrixXd::Zero(DL, temp1.cols());
+                for(int i=0; i<num*DR; ++i)
+                {
+                        temp2.row(i)=temp1.row(i);
+                }
+                temp1=temp2;
+        }
+
+
+
         for(auto it=LWave._cell.begin(); it!=LWave._cell.end(); ++it)
         {
                 MatrixXd temp(it->second);
 
-                MatrixXd temp1=svd.singularValues().asDiagonal();
-                if(DL>num*DR)
-                {
-                        for(int i=num*DR; i<DL; ++i)
-                        {
-                                temp1.row(i)=MatrixXd::Zero(1, temp1.cols());
-                        }
-                }
+                
 
                 it->second=temp*svd.matrixU()*temp1;
         }
@@ -187,16 +194,21 @@ void SiteWave::SVD(const std::vector<double>& f, SiteWave& RWave)
                 
         }
 
+        MatrixXd temp1=svd.singularValues().asDiagonal();
+        if(DR>num*DL)
+        {
+                MatrixXd temp2=MatrixXd::Zero(temp1.cols(), DR);
+                for(int i=0; i<num*DL; ++i)
+                        temp2.col(i)=temp1.col(i);
+
+                temp1=temp2;
+        }
+
         for(auto it=RWave._cell.begin(); it!=RWave._cell.end(); ++it)
         {
                 MatrixXd temp(it->second);
 
-                MatrixXd temp1=svd.singularValues().asDiagonal();
-                if(DR>num*DL)
-                {
-                        for(int i=num*DL; i<DR; ++i)
-                                temp1.col(i)=MatrixXd::Zero(temp1.rows(), 1);
-                }
+
 
                 it->second=temp1*svd.matrixV().transpose()*temp;
         }

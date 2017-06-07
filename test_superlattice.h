@@ -1,4 +1,5 @@
 #include "SuperLattice.h"
+#include "SuperEnergy.h"
 
 
 
@@ -17,7 +18,7 @@ void test_superlattice(const Parameter& para)
         SiteWave wave2(wave1);
 
         wave2.show();
-        SuperLattice super(Rlattice, wave2, wave1, para);
-        //super.calcuWave(wave2, wave1, Rsub.SysCreation(), Annihilation, para);
-        wave2.show();
+        SuperEnergy super(Rlattice, para, wave2, Ledge);
+        cout<<super.energy()<<endl<<"haha"<<endl;;
+        //cout<<super.ground()<<endl;
 }

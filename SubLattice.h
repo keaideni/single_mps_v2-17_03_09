@@ -22,6 +22,7 @@ class SubLattice
                 const Sub& SysEye()const{return _SysEye;};
                 const Sub& SysCreation()const{return _SysCreation;};
                 const Sub& SysAnnihilation()const{return _SysAnnihilation;};
+                const int& Site(){return _Site;};
 
                 
                 SubLattice(){};

@@ -13,7 +13,7 @@ CCCOM=g++ -std=c++14 -g
 
 
 #LIBFLAGS = -larmadillo
-LIBSPECTRA = -I/media/xuejian/WORK/spectra/spectra-0.2.0/spectra-0.2.0/include/ -I/media/xuejian/WORK/spectra/eigen-eigen-67e894c6cd8f/
+LIBSPECTRA = -I/media/xuejian/WORK/spectra/spectra-0.5.0/include/ -I/media/xuejian/WORK/spectra/eigen-eigen-67e894c6cd8f/
 
 
 
@@ -24,7 +24,7 @@ LIBSPECTRA = -I/media/xuejian/WORK/spectra/spectra-0.2.0/spectra-0.2.0/include/ 
 obj=main.o Parameter.o OP.o SiteWave.o Sub.o SubLattice.o SuperLattice.o#QWave.o Super.o DMRGP.o Corr.o
 main:$(obj)
 	$(CCCOM) -o main $(obj)  $(LIBSPECTRA)
-main.o:main.cpp test_Sub.h test_SiteWave.h test_sublattice.h test_superlattice.h
+main.o:main.cpp test_Sub.h test_SiteWave.h test_sublattice.h test_superlattice.h SuperEnergy.h Iterator.h
 	$(CCCOM) -c main.cpp $(LIBSPECTRA)
 Parameter.o:Parameter.h Parameter.cpp
 	$(CCCOM) -c Parameter.cpp -O2 $(LIBSPECTRA)

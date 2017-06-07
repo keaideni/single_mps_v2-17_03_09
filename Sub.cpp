@@ -327,7 +327,8 @@ void Sub::show()const
         for(auto it=_RLQ.begin(); it!=_RLQ.end(); ++it)cout<<it->first<<" => "<<it->second<<endl;
 
         cout<<"The QMat of this sub:"<<endl;
-        for(auto it=_QMat.begin(); it!=_QMat.end(); ++it)cout<<it->first<<" =>"<<endl<<it->second<<endl;
+        for(auto it=_QMat.begin(); it!=_QMat.end(); ++it)cout<<it->first<<" =>"<<endl<<it->second.rows()
+                <<"x"<<it->second.cols()<<endl;
                 cout<<"==========the beautiful ending line============="<<endl;
 }
 

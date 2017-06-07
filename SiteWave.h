@@ -42,7 +42,7 @@ public:
 
 
 
-        void Wave2f(vector<double>& f);
+        void Wave2f(vector<double>& f)const;
         void f2Wave(const std::vector<double>& f);
 
         void SVD(SiteWave& LWave, const std::vector<double>& f);

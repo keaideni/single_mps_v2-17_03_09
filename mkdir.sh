@@ -12,11 +12,11 @@ ParticleNo= 10
 SiteNo= 1
 DeltaQL= 1
 DeltaQR= 2
-D= 20
-SweepNo= 3
+D= 10
+SweepNo= 2
 EdgeCondition= 1
 Energy= 0
 u= 1
-t= 0.12
-epsilon= 0.12
+t= 1
+epsilon= 0
 EOF
