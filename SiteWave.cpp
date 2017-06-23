@@ -102,8 +102,8 @@ void SiteWave::f2Wave(const std::vector<double>& f)
 
 void SiteWave::SVD(SiteWave& LWave, const std::vector<double>& f)
 {
-        int DR(_cell.begin()->second.rows());
-        int DL(_cell.begin()->second.cols());
+        int DL(_cell.begin()->second.rows());
+        int DR(_cell.begin()->second.cols());
 
         int num(_cell.size());
 
@@ -148,7 +148,8 @@ void SiteWave::SVD(SiteWave& LWave, const std::vector<double>& f)
 
         for(auto it=LWave._cell.begin(); it!=LWave._cell.end(); ++it)
         {
-                MatrixXd temp(it->second);
+                MatrixXd temp(it->second);//cout<<it->second.rows()<<"x"<<it->second.cols()<<endl;
+                //cout<<svd.matrixU().rows()<<"x"<<svd.matrixU().cols()<<endl;
 
                 
 

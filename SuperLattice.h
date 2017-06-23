@@ -41,7 +41,7 @@ public:
                 {
                         case media:
                         {
-                                f1tof2a(wave_in, wave_out);wave_in.show();wave_out.show();
+                                f1tof2a(wave_in, wave_out);//wave_in.show();wave_out.show();
                                 break;
                         }
                         case Ledge:

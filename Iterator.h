@@ -21,11 +21,12 @@ void Iterator(const Parameter& para)
 
         for(int i=0; i<para.SweepNo(); ++i)
         {
+                cout<<"The "<<i<<"th sweeps:"<<endl;
 
                 while(true)
                 {
 
-                        
+                        cout<<iterM<<endl;
 
                         wave1.read(iterM);
 

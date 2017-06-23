@@ -25,11 +25,11 @@ public:
                 SymEigsSolver<double, SMALLEST_ALGE, SuperLattice> eigs(&super, 2, 6);
                 vector<double> f;
                 IniWave.Wave2f(f);
-                double *pt=new double[super.rows()];cout<<super.rows()<<endl;
+                double *pt=new double[super.rows()];//cout<<super.rows()<<endl;
                 for(int i=0; i<super.rows(); ++i){pt[i]=f.at(i);}
                 eigs.init(pt);
                 eigs.compute();//cout<<eigs.eigenvectors()<<endl;
-                cout<<eigs.num_iterations()<<endl;
+                //cout<<eigs.num_iterations()<<endl;
                 if(eigs.info()==SUCCESSFUL)
                 {
                         _energy=eigs.eigenvalues()(0);

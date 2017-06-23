@@ -150,13 +150,9 @@ OP::OP(const Parameter& para, const OP_modes& type)
                                 double temp((i*i-i)/2*para.u()+para.epsilon()*i);
                                 _QMat.insert(std::pair<int, double>(i, temp));
                         }
+                        break;
                 }
-        }
-
-
-
-        switch (type)
-        {
+        
 
                 case SpinZ:
                 {
